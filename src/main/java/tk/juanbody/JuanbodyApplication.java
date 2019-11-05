@@ -1,0 +1,20 @@
+package tk.juanbody;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+public class JuanbodyApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(JuanbodyApplication.class, args);
+	}
+	
+	@Bean
+	public ModelMapper modelMapper() {
+	    return new ModelMapper();
+	}
+
+}

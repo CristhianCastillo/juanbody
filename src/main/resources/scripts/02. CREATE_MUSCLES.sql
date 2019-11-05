@@ -1,0 +1,11 @@
+use juanbody_db;
+insert into muscle (name) values ('Abductor de meñique');
+insert into muscle (name) values ('Bíceps braquial');
+insert into muscle (name) values ('Bíceps crural');
+insert into muscle (name) values ('Complexo menor');
+insert into muscle (name) values ('Cuadrado lumbar');
+insert into muscle (name) values ('Cuádriceps (recto anterior)');
+insert into muscle (name) values ('Cubital anterior');
+insert into muscle (name) values ('Cubital posterior');
+insert into muscle (name) values ('Deltoides');
+insert into muscle (name) values ('Diafragma');
