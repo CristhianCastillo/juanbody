@@ -14,25 +14,29 @@ import java.util.List;
 @Component
 public class ITrainingService implements TrainingService {
 
-    @Autowired
-    private TrainingRepository trainingRepository;
+	@Autowired
+	private TrainingRepository trainingRepository;
 
-    @Autowired
-    private ModelMapper modelMapper;
+	@Autowired
+	private ModelMapper modelMapper;
 
-    @Override
-    @Transactional
-    public List<TrainingDto> findAll() {
-        List<TrainingDto> result = new ArrayList<>();
-        trainingRepository.findAll().forEach(e -> result.add(modelMapper.map(e, TrainingDto.class)));
-        return result;
-    }
+	@Override
+	@Transactional
+	public List<TrainingDto> findAll() {
+		List<TrainingDto> result = new ArrayList<>();
+		trainingRepository.findAll().forEach(e -> result.add(modelMapper.map(e, TrainingDto.class)));
+		return result;
+	}
 
-    @Override
-    public TrainingDto findById(Long id) {
-        TrainingEntity trainingEntity = trainingRepository.findById(id).get();
-        if (trainingEntity.getId() != null) {
-            return modelMapper.map(trainingEntity, TrainingDto.class);
-        } else return null;
-    }
+	@Override
+	public TrainingDto findById(Long id) {
+		if (trainingRepository.findById(id).isPresent()) {
+			TrainingEntity trainingEntity = trainingRepository.findById(id).get();
+			if (trainingEntity.getId() != null) {
+				return modelMapper.map(trainingEntity, TrainingDto.class);
+			} else
+				return null;
+		}
+		return null;
+	}
 }

@@ -5,21 +5,39 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import tk.juanbody.service.ExerciseService;
 import tk.juanbody.service.TrainingService;
 import tk.juanbody.util.ConstantsController;
 import tk.juanbody.util.ResultDto;
 
 @Controller
+@CrossOrigin
 public class TrainingController {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(TrainingController.class);
 
     @Autowired
     private TrainingService trainingService;
+    
+    @Autowired
+    private ExerciseService excersiceService;
 
+    @ResponseBody
+    @GetMapping(ConstantsController.REST_EXERCISES_GET)
+    public ResultDto getAllExcercises() {
+        try {
+            return new ResultDto(ResultDto.STATUS_OK, excersiceService.findAll());
+        } catch (Exception ex) {
+            LOGGER.error("ERROR GET ALL TRAININGS: {} ", ExceptionUtils.getStackTrace(ex));
+            return new ResultDto(ResultDto.STATUS_ERROR, ex.getMessage());
+        }
+    }
+    
     @ResponseBody
     @GetMapping(ConstantsController.REST_TRAININGS_GET)
     public ResultDto getAllTrainings() {

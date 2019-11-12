@@ -8,6 +8,7 @@ public class ConstantsController {
 
     // Trainings
     public static final String REST_TRAININGS_GET = "/trainings/get-all";
+    public static final String REST_EXERCISES_GET = "/trainings/exercises";
     public static final String REST_TRAININGS_GET_ID = "/trainings/training/{id}";
 
     // Practices
